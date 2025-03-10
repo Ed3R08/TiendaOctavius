@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>TiendaOctavius</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <!-- Encabezado -->
+        <header th:replace="~{layout/plantilla :: header}"></header>
+
+        <!-- Sección para Editar Producto (fragmento) -->
+        <section th:replace="~{producto/fragmentos :: editarProducto}"></section>
+
+        <!-- Pie de página -->
+        <footer th:replace="~{layout/plantilla :: footer}"></footer>
+    </body>
+</html>

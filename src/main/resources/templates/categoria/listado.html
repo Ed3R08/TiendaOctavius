@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>TiendaOctavius</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <!-- ENCABEZADO -->
+        <header th:replace="~{layout/plantilla :: header}"></header>
+
+        <!-- BOTÓN “AGREGAR CATEGORÍA” (Fragmento) -->
+        <section th:replace="~{categoria/fragmentos :: btnAgregar}"></section>
+
+        <!-- MODAL PARA AGREGAR CATEGORÍA (Fragmento) -->
+        <section th:replace="~{categoria/fragmentos :: agregarCategoria}"></section>
+
+        <!-- LISTADO DE CATEGORÍAS (Fragmento) -->
+        <section th:replace="~{categoria/fragmentos :: listado}"></section>
+
+        <!-- PIE DE PÁGINA -->
+        <footer th:replace="~{layout/plantilla :: footer}"></footer>
+    </body>
+</html>

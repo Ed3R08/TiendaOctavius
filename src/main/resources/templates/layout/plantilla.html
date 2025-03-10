@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:fragment="head">
+        <title>TiendaOctavius</title>
+        <meta charset="UTF-8"/>
+        <!-- Iconos o favicons (ajusta o elimina si no los necesitas) -->
+        <link rel="icon" type="image/png" sizes="16x16" href="/fav/favicon-16x16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/fav/favicon-32x32.png" />
+        
+        <!-- Frameworks CSS y JS (ejemplo con Bootstrap y Font Awesome) -->
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}" />
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+        <!-- Archivo JS propio (opcional) -->
+        <script th:src="@{/js/rutinas.js}"></script>
+    </head>
+
+    <body>
+        <!-- ENCABEZADO -->
+        <header th:fragment="header" class="header">
+            <!-- Barra de navegación -->
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+                <div class="container">
+                    <!-- Marca / Logo -->
+                    <a th:href="@{/}" class="navbar-brand">
+                        <!-- Usando i18n: [[#{aplicacion.nombre}]] o texto fijo: TiendaOctavius -->
+                        [[#{aplicacion.nombre}]]
+                    </a>
+                    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <!-- Menú principal (ejemplo) -->
+                        <ul class="navbar-nav">
+                            <li class="nav-item px-2">
+                                <a class="nav-link" th:href="@{/catalogo}">
+                                    [[#{plantilla.catalogo}]] <!-- Ej: Catálogo -->
+                                </a>
+                            </li>
+                            <li class="nav-item px-2">
+                                <a class="nav-link" th:href="@{/servicios}">
+                                    [[#{plantilla.servicios}]] <!-- Ej: Servicios de Mantenimiento -->
+                                </a>
+                            </li>
+                            <li class="nav-item px-2">
+                                <a class="nav-link" th:href="@{/contacto}">
+                                    [[#{plantilla.contacto}]]  <!-- Ej: Contacto / Soporte -->
+                                </a>
+                            </li>
+                        </ul>
+
+                        <!-- Menú secundario (Login, Registro, Idioma, etc.) -->
+                        <ul class="navbar-nav">
+                            <li class="nav-item px-2">
+                                <a class="nav-link" th:href="@{/registro}">
+                                    [[#{plantilla.registro}]] <!-- Ej: Registrarse -->
+                                </a>
+                            </li>
+                            <li class="nav-item px-2">
+                                <a class="nav-link" th:href="@{/login}">
+                                    [[#{plantilla.login}]] <!-- Ej: Iniciar Sesión -->
+                                </a>
+                            </li>
+                            
+                            <!-- Si aún deseas mantener la selección de idioma -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle"
+                                   data-bs-toggle="dropdown"
+                                   href="#" role="button" aria-expanded="false">
+                                   [[#{plantilla.idioma}]]
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" th:href="@{/(lang=es)}">Español</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/(lang=en)}">English</a></li>
+                                    <!-- Agrega o quita idiomas según necesites -->
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Sección de encabezado (puedes personalizar los colores y texto) -->
+            <section id="main-header" class="py-2 bg-success text-white">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- Ejemplo: Título principal de la aplicación -->
+                            <h1><i class="fas fa-cog"></i> [[#{plantilla.suTienda}]]</h1>
+                            <!-- O texto fijo: <h1><i class="fas fa-cog"></i> Bienvenido a TiendaOctavius</h1> -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </header>
+
+        <!-- AQUÍ IRA TU CONTENIDO PRINCIPAL DE CADA PÁGINA -->
+        <!-- Usa "th:replace" o "th:insert" en tus demás vistas para cargar este layout y tus fragmentos -->
+
+        <!-- PIE DE PÁGINA -->
+        <footer th:fragment="footer" class="p-2 mt-5 bg-info text-white">
+            <p class="text-center lead">&copy; [[#{plantilla.derechos}]] 
+               <!-- O texto fijo: &copy; 2025 TiendaOctavius. Todos los derechos reservados. -->
+            </p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="~{layout/plantilla :: head}">
+        <!-- Cambiamos el título para la nueva aplicación -->
+        <title>TiendaOctavius - Inicio</title>
+        <meta charset="UTF-8" />
+    </head>
+
+    <body>
+        <!-- Encabezado (cargado desde la plantilla base) -->
+        <header th:replace="~{layout/plantilla :: header}"></header>
+
+        <!-- Contenido principal de la página de inicio -->
+        <main>
+            <div class="container my-4">
+                <h2>Bienvenido a TiendaOctavius</h2>
+                <p>
+                    Aquí puedes encontrar los mejores productos y servicios 
+                    de mantenimiento para tu piscina. ¡Disfruta de tu experiencia 
+                    de compra!
+                </p>
+            </div>
+        </main>
+
+        <!-- Pie de página (cargado desde la plantilla base) -->
+        <footer th:replace="~{layout/plantilla :: footer}"></footer>
+    </body>
+</html>
