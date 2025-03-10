@@ -4,7 +4,6 @@ import com.tiendaOctavius.service.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity; 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,7 +20,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    // 2. Inyectar tu UserDetailsServiceImpl (lo crearemos en un momento)
+    // 2. Inyectar tu UserDetailsServiceImpl
     private final UserDetailsServiceImpl userDetailsService;
     public SecurityConfig(UserDetailsServiceImpl userDetailsService) {
         this.userDetailsService = userDetailsService;
@@ -40,6 +39,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+            .authenticationProvider(authenticationProvider())
             .authorizeHttpRequests((requests) -> requests
                 // Rutas públicas (permitir acceso sin autenticación)
                 .requestMatchers("/", "/registro/**", "/css/**", "/js/**", "/images/**").permitAll()
@@ -60,9 +60,5 @@ public class SecurityConfig {
         return http.build();
     }
     
-    // 5. Vincular nuestro AuthenticationProvider con el AuthenticationManager
-    @Bean
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider());
-    }
+    // Elimina el método configure(AuthenticationManagerBuilder auth) que retorna void.
 }
