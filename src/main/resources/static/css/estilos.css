@@ -1,39 +1,49 @@
 body {
-    background-color:  bisque;
-    font-family:  sans-serif;
+    background-color: appworkspace;
+    font-family: sans-serif;
 }
 
+/* HEADER */
 header {
-    background-color: blue;
+    background-color: greenyellow;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 90px;
+    z-index: 3; /* El más alto para que esté encima si se superpone */
 }
 
+/* ASIDE */
 aside {
-    background-color: aquamarine;
+    background-color: greenyellow;
     position: fixed;
-    top: 90px;
+    top: 90px;  /* Debajo del header */
     left: 0;
     width: 20%;
-    bottom: 20px;
+    bottom: 40px; /* Para dejar espacio al footer de 40px */
     padding: 10px;
+    z-index: 2; /* Debajo del header, encima de la sección si chocan */
 }
 
-section{
-    background-color: bisque;
-    overflow-y: scroll;
+/* SECTION */
+section {
+    background-color: aquamarine;
+    overflow-y: auto; /* Para desplazamiento interno si el contenido excede */
     position: fixed;
-    top: 90px;
-    left: 20%;
+    top: 90px;    /* Debajo del header */
+    left: 20%;    /* Ocupa el espacio a la derecha del aside */
     width: 80%;
-    bottom: 20px;
+    bottom: 40px; /* Deja espacio para el footer de 40px */
     padding: 10px;
+    z-index: 1;   /* Debajo del aside y header si se superponen */
+    
+    /* Borde de prueba para ver el contenedor: quítalo luego */
+    border: 2px dashed red;
 }
 
-footer{
+/* FOOTER */
+footer {
     background-color: black;
     color: white;
     text-align: center;
@@ -41,31 +51,36 @@ footer{
     left: 0;
     width: 100%;
     bottom: 0;
-    height: 20px;
+    height: 40px;
+    z-index: 3; /* Al nivel del header, visible sobre la sección */
 }
 
+/* NAV - Menú superior */
 nav {
     display: flex;
     justify-content: space-between;
 }
-.nav-link{
-    color: white;
+
+/* Enlaces del menú */
+.nav-link {
+    color: black;  /* Contrasta con greenyellow del header */
     text-decoration: none;
 }
 
-.logo{
+.logo {
     font-size: 32px;
     font-weight: bold;
     padding-left: 40px;
-    line-height: 90px;
+    line-height: 90px; /* Centrado vertical en el header */
 }
 
-.nav-menu{
+.nav-menu {
     display: flex;
     list-style: none;
     padding-right: 40px;
 }
-.nav-menu-item{
+
+.nav-menu-item {
     font-size: 18px;
     margin: 0 10px;
     line-height: 90px;
@@ -74,10 +89,23 @@ nav {
 .enlace {
     padding: 8px 12px;
     border-radius: 10px;
-    
 }
 
 .enlace:hover {
     background-color: black;
-    
+    color: white; /* Ejemplo si quieres cambiar el color al pasar el mouse */
+}
+
+.center-message {
+    position: fixed;         /* Fijo en la ventana */
+    top: 50%;                /* Centrado verticalmente */
+    left: 50%;               /* Centrado horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta para que el centro del div coincida con el centro de la pantalla */
+    background-color: rgba(255, 255, 255, 0.95); /* Fondo blanco casi opaco */
+    padding: 20px 30px;      /* Espaciado interno */
+    border: 2px solid #00cccc;  /* Borde en color verde agua (ajústalo a tu gusto) */
+    z-index: 10;             /* Asegura que se muestre por encima de otros elementos fijos */
+    text-align: center;
+    border-radius: 8px;      /* Bordes redondeados, opcional */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Sombra para destacar el mensaje, opcional */
 }
