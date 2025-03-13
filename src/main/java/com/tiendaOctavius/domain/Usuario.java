@@ -1,3 +1,4 @@
+//Prueba Git commit
 package com.tiendaOctavius.domain;
 
 import jakarta.persistence.*;
