@@ -27,9 +27,10 @@ public class ProductoController {
     private FirebaseStorageService firebaseStorageService;
 
     @GetMapping("/listado")
-    public String listado(Model model) {
-        // Obtener lista de productos (false = no incluir inactivos, o lo que signifique en tu servicio)
-        var lista = productoService.getProductos(false);
+    public String listado(Model model, @RequestParam(name = "keyword", required = false) String keyword) {
+        // Obtener lista de productos, filtrar por palabra clave si se proporciona
+        var lista = (keyword != null && !keyword.isEmpty()) ? productoService.buscarProductos(keyword) : productoService.getProductos(false);
+        
         model.addAttribute("productos", lista);
         model.addAttribute("totalProductos", lista.size());
         
@@ -40,13 +41,13 @@ public class ProductoController {
         // Retornar la vista de listado de productos
         return "/producto/listado";
     }
-    
+
     @GetMapping("/eliminar/{idProducto}")
     public String eliminar(Producto producto) {
         productoService.delete(producto);
         return "redirect:/producto/listado";
     }
- 
+
     @GetMapping("/modificar/{idProducto}")
     public String modificar(Producto producto, Model model) {
         producto = productoService.getProducto(producto);
@@ -57,10 +58,10 @@ public class ProductoController {
 
         return "/producto/modifica";
     }
-    
+
     @PostMapping("/guardar")
     public String guardar(Producto producto,
-                          @RequestParam("imagenFile") MultipartFile imagenFile) {
+        @RequestParam("imagenFile") MultipartFile imagenFile) {
         // Verificar si se subió una imagen
         if (!imagenFile.isEmpty()) {
             // Guardar primero el producto para generar su ID
@@ -69,10 +70,10 @@ public class ProductoController {
             String ruta = firebaseStorageService.cargaImagen(imagenFile, "producto", producto.getIdProducto());
             producto.setRutaImagen(ruta);
         }
-        
+
         // Guardar el producto (ya con la ruta de imagen si aplica)
         productoService.save(producto);
-        
+
         return "redirect:/producto/listado";
     }
 }

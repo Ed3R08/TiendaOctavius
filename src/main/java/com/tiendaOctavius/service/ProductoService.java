@@ -15,30 +15,35 @@ public class ProductoService {
 
     @Transactional(readOnly = true)
     public List<Producto> getProductos(boolean activos) {
-        var lista = productoRepository.findAll();
-        //Falta gente aca
-        return lista;
-
+        if (activos) {
+            return productoRepository.findByActivo(true);
+        } else {
+            return productoRepository.findAll();
+        }
     }
 
-    //Se escriben los metodos de un CRUD(Create, Read, Update, Delete)
+    @Transactional(readOnly = true)
+    public List<Producto> buscarProductos(String keyword) {
+        return productoRepository.findByNombreContainingIgnoreCase(keyword);
+    }
+
+    // Se escriben los métodos de un CRUD (Create, Read, Update, Delete)
     @Transactional(readOnly = true)
     public Producto getProducto(Producto producto) {
-
         return productoRepository.findById(producto.getIdProducto())
                 .orElse(null);
     }
 
     @Transactional
     public void delete(Producto producto) {
-        //Elimina el registro que contiene el ID a lo pasado en producto,getIdProducto()
+        // Elimina el registro que contiene el ID pasado en producto.getIdProducto()
         productoRepository.delete(producto);
     }
+
     @Transactional
     public void save(Producto producto) {
-        // Si producto.idProducto esta vacio... se inserta un registro
+        // Si producto.idProducto está vacío... se inserta un registro
         // Si producto.idProducto tiene algo... se modifica el registro
         productoRepository.save(producto);
-}
-    
+    }
 }

@@ -52,7 +52,7 @@
                                         </option>
                                     </select>
                                 </div>
-                                
+
                                 <div class="mb-3">
                                     <label for="descripcion">[[#{producto.descripcion}]]</label>
                                     <input type="text" class="form-control" name="descripcion" required="true"/>
@@ -98,6 +98,16 @@
                     <div class="card">
                         <div class="card-header">
                             <h4>[[#{producto.listado}]]</h4>
+                        </div>
+
+                        <!-- Formulario de búsqueda -->
+                        <div class="card-body">
+                            <form action="/producto/listado" method="get">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" name="keyword" placeholder="Buscar productos..." aria-label="Buscar productos">
+                                        <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                                </div>
+                            </form>
                         </div>
 
                         <div th:if="${productos != null and !productos.empty}">
@@ -147,18 +157,18 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Panel lateral: Total de productos (opcional) -->
-                <div class="col-md-3">
-                    <div class="card text-center bg-success text-white mb-3">
-                        <div class="card-body">
-                            <h3>[[#{producto.total}]]</h3>
-                            <h4 class="fs-2">
-                                <i class="fas fa-users"></i> [[${totalProductos}]]
-                            </h4>
-                        </div>
+            </div>
+            <!-- Panel lateral: Total de productos (opcional) -->
+            <div class="col-md-3">
+                <div class="card text-center bg-success text-white mb-3">
+                    <div class="card-body">
+                        <h3>[[#{producto.total}]]</h3>
+                        <h4 class="fs-2">
+                            <i class="fas fa-users"></i> [[${totalProductos}]]
+                        </h4>
                     </div>
                 </div>
+            </div>
             </div>
         </section>
 
@@ -214,7 +224,7 @@
                                             </option>
                                         </select>
                                     </div>
-                                    
+
                                     <!-- Descripción -->
                                     <div class="mb-3">
                                         <label for="descripcion">[[#{producto.descripcion}]]</label>
@@ -223,7 +233,7 @@
                                                th:field="*{descripcion}" 
                                                required="true"/>
                                     </div>
-                                    
+
                                     <!-- Detalle -->
                                     <div class="mb-3">
                                         <label>[[#{producto.detalle}]]</label>
@@ -232,7 +242,7 @@
                                                   th:field="*{detalle}"
                                                   rows="3"></textarea>
                                     </div>
-                                    
+
                                     <!-- Precio -->
                                     <div class="mb-3">
                                         <label>[[#{producto.precio}]]</label>
@@ -241,7 +251,7 @@
                                                th:field="*{precio}"
                                                required="true"/>
                                     </div>
-                                    
+
                                     <!-- Existencias -->
                                     <div class="mb-3">
                                         <label>[[#{producto.existencias}]]</label>
@@ -260,7 +270,7 @@
                                                id="activo"
                                                th:field="*{activo}"/>
                                     </div>
-                                    
+
                                     <!-- Imagen -->
                                     <div class="mb-3">
                                         <label for="imagen">[[#{producto.rutaImagen}]]</label>
