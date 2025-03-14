@@ -37,28 +37,27 @@ public class SecurityConfig {
 
     // 4. SecurityFilterChain para definir las rutas públicas y privadas
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-            .authenticationProvider(authenticationProvider())
-            .authorizeHttpRequests((requests) -> requests
-                // Rutas públicas (permitir acceso sin autenticación)
-                .requestMatchers("/", "/registro/**", "/css/**", "/js/**", "/images/**").permitAll()
-                // Todo lo demás requiere autenticación
-                .anyRequest().authenticated()
-            )
-            .formLogin((form) -> form
-                .loginPage("/login")       // Ruta del formulario de login
-                .permitAll()               // Permitir acceso a todos
-                .defaultSuccessUrl("/", true) // Redirigir al inicio tras login exitoso
-            )
-            .logout((logout) -> logout
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/")
-                .permitAll()
-            );
+public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http
+        .authenticationProvider(authenticationProvider())
+        .authorizeHttpRequests((requests) -> requests
+            .requestMatchers("/", "/registro/**", "/login", "/catalogo", "/servicios", "/contacto", "/css/**", "/js/**", "/images/**").permitAll()
+            .anyRequest().authenticated()
+        )
+        .formLogin((form) -> form
+            .loginPage("/login")       // Ruta del formulario de login
+            .permitAll()               // Permitir acceso a todos
+            .defaultSuccessUrl("/", true)
+        )
+        .logout((logout) -> logout
+            .logoutUrl("/logout")
+            .logoutSuccessUrl("/")
+            .permitAll()
+        );
 
-        return http.build();
-    }
+    return http.build();
+}
+
     
     // Elimina el método configure(AuthenticationManagerBuilder auth) que retorna void.
 }

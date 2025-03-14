@@ -1,104 +1,106 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>TiendaOctavius</title>
-    <!-- Enlaza tu archivo de estilos -->
-    <link rel="stylesheet" th:href="@{/css/estilos.css}">
-    <!-- Estilos adicionales para el mensaje central -->
-    <style>
-        .center-message {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 20px 30px;
-            border: 2px solid #00cccc;
-            z-index: 9999;  /* Asegura que se muestre por encima de todo */
-            text-align: center;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        }
-    </style>
-</head>
-<body>
-    <!-- Cabecera fija -->
-    <header>
-        <nav>
-            <!-- Contenido izquierdo: logo y menú principal -->
-            <div class="logo">TiendaOctavius</div>
+    <head>
+        <meta charset="UTF-8">
+        <title>TiendaOctavius</title>
+        <!-- Enlaza tu archivo de estilos -->
+        <link rel="stylesheet" th:href="@{/css/estilos.css}">
+        <!-- Estilos adicionales para el mensaje central -->
+        <!--<style>
+            .center-message {
+                position: fixed;
+                top: 80%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: rgba(255, 255, 255, 0.95);
+                padding: 20px 30px;
+                border: 2px solid #00cccc;
+                z-index: 9999;  /* Debería situarlo por encima de otros elementos */
+                text-align: center;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            }
+        </style>-->
+    </head>
+    <body>
+        <!-- Cabecera fija -->
+        <header>
+            <nav>
+                <!-- Contenido izquierdo: logo y menú principal -->
+                <div class="logo">TiendaOctavius</div>
+                <ul class="nav-menu">
+                    <li class="nav-menu-item"><a class="nav-link" href="/catalogo">Catálogo</a></li>
+                    <li class="nav-menu-item"><a class="nav-link" href="/servicios">Servicios</a></li>
+                    <li class="nav-menu-item"><a class="nav-link" href="/contacto">Contacto</a></li>
+                </ul>
+                <!-- Contenido derecho: Registrarse y Login -->
+                <ul class="nav-menu">
+                    <li class="nav-menu-item"><a class="nav-link" href="/registro">Registrarse</a></li>
+                    <li class="nav-menu-item"><a class="nav-link" href="/login">Iniciar Sesión</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Bloque fijo centrado para el mensaje -->
+        <div class="center-message">
+            <h2>Bienvenido a TiendaOctavius</h2>
+
+        </div>
+
+        <!-- Menú lateral (aside) -->
+        <aside>
             <ul class="nav-menu">
                 <li class="nav-menu-item"><a class="nav-link" href="/catalogo">Catálogo</a></li>
                 <li class="nav-menu-item"><a class="nav-link" href="/servicios">Servicios</a></li>
                 <li class="nav-menu-item"><a class="nav-link" href="/contacto">Contacto</a></li>
-            </ul>
-            <!-- Contenido derecho: Registrarse y Login -->
-            <ul class="nav-menu">
                 <li class="nav-menu-item"><a class="nav-link" href="/registro">Registrarse</a></li>
                 <li class="nav-menu-item"><a class="nav-link" href="/login">Iniciar Sesión</a></li>
             </ul>
-        </nav>
-    </header>
+        </aside>
 
-    <!-- Bloque fijo centrado para el mensaje -->
-    <div class="center-message">
-        <h2>Bienvenido a TiendaOctavius</h2>
-        <p>
-            Aquí puedes encontrar los mejores productos y servicios de mantenimiento para tu piscina.
-            ¡Disfruta de tu experiencia de compra!
-        </p>
-    </div>
+        <!-- Contenido principal en la sección -->
+        <section>
+            <div>
+                <!-- Ejemplo de menú con pestañas dentro del contenido (opcional) -->
+                <ul class="nav nav-tabs" id="contentTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="tab-catalogo" data-bs-toggle="tab" data-bs-target="#catalogo" type="button" role="tab" aria-controls="catalogo" aria-selected="true">
+                            Catálogo
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="tab-servicios" data-bs-toggle="tab" data-bs-target="#servicios" type="button" role="tab" aria-controls="servicios" aria-selected="false">
+                            Servicios
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="tab-contacto" data-bs-toggle="tab" data-bs-target="#contacto" type="button" role="tab" aria-controls="contacto" aria-selected="false">
+                            Contacto
+                        </button>
+                    </li>
+                </ul>
+                <div><p>
 
-    <!-- Menú lateral (aside) -->
-    <aside>
-        <ul class="nav-menu">
-            <li class="nav-menu-item"><a class="nav-link" href="/catalogo">Catálogo</a></li>
-            <li class="nav-menu-item"><a class="nav-link" href="/servicios">Servicios</a></li>
-            <li class="nav-menu-item"><a class="nav-link" href="/contacto">Contacto</a></li>
-            <li class="nav-menu-item"><a class="nav-link" href="/registro">Registrarse</a></li>
-            <li class="nav-menu-item"><a class="nav-link" href="/login">Iniciar Sesión</a></li>
-        </ul>
-    </aside>
-
-    <!-- Contenido principal en la sección -->
-    <section>
-        <div>
-            <!-- Ejemplo de menú con pestañas dentro del contenido (opcional) -->
-            <ul class="nav nav-tabs" id="contentTabs" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="tab-catalogo" data-bs-toggle="tab" data-bs-target="#catalogo" type="button" role="tab" aria-controls="catalogo" aria-selected="true">
-                        Catálogo
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="tab-servicios" data-bs-toggle="tab" data-bs-target="#servicios" type="button" role="tab" aria-controls="servicios" aria-selected="false">
-                        Servicios
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="tab-contacto" data-bs-toggle="tab" data-bs-target="#contacto" type="button" role="tab" aria-controls="contacto" aria-selected="false">
-                        Contacto
-                    </button>
-                </li>
-            </ul>
-            <div class="tab-content" id="contentTabsContent">
-                <div class="tab-pane fade show active" id="catalogo" role="tabpanel" aria-labelledby="tab-catalogo">
-                    <p>Contenido del catálogo de productos.</p>
-                </div>
-                <div class="tab-pane fade" id="servicios" role="tabpanel" aria-labelledby="tab-servicios">
-                    <p>Información sobre servicios de mantenimiento.</p>
-                </div>
-                <div class="tab-pane fade" id="contacto" role="tabpanel" aria-labelledby="tab-contacto">
-                    <p>Detalles de contacto y soporte.</p>
+                        Aquí puedes encontrar los mejores productos y servicios de mantenimiento para tu piscina.
+                        ¡Disfruta de tu experiencia de compra!
+                    </p></div>
+                <div class="tab-content" id="contentTabsContent">
+                    <div class="tab-pane fade show active" id="catalogo" role="tabpanel" aria-labelledby="tab-catalogo">
+                        <p>Contenido del catálogo de productos.</p>
+                    </div>
+                    <div class="tab-pane fade" id="servicios" role="tabpanel" aria-labelledby="tab-servicios">
+                        <p>Información sobre servicios de mantenimiento.</p>
+                    </div>
+                    <div class="tab-pane fade" id="contacto" role="tabpanel" aria-labelledby="tab-contacto">
+                        <p>Detalles de contacto y soporte.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Pie de página fijo -->
-    <footer>
-        <p>&copy; TiendaOctavius. Todos los derechos reservados.</p>
-    </footer>
-</body>
+        <!-- Pie de página fijo -->
+        <footer>
+            <p>&copy; TiendaOctavius. Todos los derechos reservados.</p>
+        </footer>
+    </body>
 </html>
