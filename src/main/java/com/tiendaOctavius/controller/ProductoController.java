@@ -30,10 +30,10 @@ public class ProductoController {
     public String listado(Model model, @RequestParam(name = "keyword", required = false) String keyword) {
         // Obtener lista de productos, filtrar por palabra clave si se proporciona
         var lista = (keyword != null && !keyword.isEmpty()) ? productoService.buscarProductos(keyword) : productoService.getProductos(false);
-        
+
         model.addAttribute("productos", lista);
         model.addAttribute("totalProductos", lista.size());
-        
+
         // Obtener lista de categorías para usarlas en el select (al agregar producto)
         var categorias = categoriaService.getCategorias(false);
         model.addAttribute("categorias", categorias);
@@ -61,7 +61,7 @@ public class ProductoController {
 
     @PostMapping("/guardar")
     public String guardar(Producto producto,
-        @RequestParam("imagenFile") MultipartFile imagenFile) {
+            @RequestParam("imagenFile") MultipartFile imagenFile) {
         // Verificar si se subió una imagen
         if (!imagenFile.isEmpty()) {
             // Guardar primero el producto para generar su ID
