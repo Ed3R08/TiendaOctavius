@@ -18,7 +18,7 @@ public class RegistroController {
     @GetMapping
     public String registroForm(Model model) {
         model.addAttribute("usuario", new Usuario());
-        return "registro"; // Nombre de la vista (registro.html)
+        return "registro/registro"; // Nombre de la vista (registro.html)
     }
 
     // Procesar el formulario de registro
@@ -26,6 +26,6 @@ public class RegistroController {
     public String guardarUsuario(@ModelAttribute("usuario") Usuario usuario) {
         // Guardamos el usuario (se encripta la contraseña)
         usuarioService.save(usuario);
-        return "redirect:/login?registrado=true";
+        return "/login";
     }
 }
